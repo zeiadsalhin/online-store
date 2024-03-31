@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Nav />
+        <!-- <Nav /> -->
         <Carousel :sale_items="sale_items" />
         <v-container>
             <h1 class="text-2xl">Check out</h1>

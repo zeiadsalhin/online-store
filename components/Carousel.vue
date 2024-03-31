@@ -15,7 +15,7 @@
                 <v-progress-circular width="2" size="150" color="primary" indeterminate></v-progress-circular>
             </v-row>
         </template>
-        <v-carousel-item v-for="(p, i) in sale_items" :key="`saleitem${i}`">
+        <v-carousel-item v-if="sale_items" v-for="(p, i) in sale_items" :key="`saleitem${i}`">
             <v-img height="100vh"
                 src="https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp">
                 <v-container class="fill-height">
@@ -38,6 +38,16 @@
                 </v-container>
             </v-img>
         </v-carousel-item>
+        <v-carousel-item v-else>
+            <div class="h-full flex justify-center p-10">
+                <div class="m-10 p-5 bg-zinc-900 my-auto shadow-sm">
+                    <h2 class="text-2xl">
+                        Error404
+                    </h2>
+                </div>
+
+            </div>
+        </v-carousel-item>
     </v-carousel>
 </template>
 
@@ -45,6 +55,11 @@
 export default {
     props: {
         sale_items: Array,
+    },
+    data() {
+        return {
+            sale_items: null,
+        }
     },
 };
 </script>
