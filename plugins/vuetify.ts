@@ -9,7 +9,7 @@ export default defineNuxtPlugin((app) => {
     // components,
     // directives,
     theme: {
-        defaultTheme:'dark',
+        defaultTheme: localStorage.getItem("scheme") ||'dark',
     },
     display: {
         mobileBreakpoint: 'xl',

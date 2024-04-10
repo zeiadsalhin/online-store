@@ -3,7 +3,7 @@
         <!-- <Nav /> -->
         <Carousel :sale_items="sale_items" />
         <v-container>
-            <h1 class="text-2xl">Check out</h1>
+            <h1 class="text-3xl p-5">Check out</h1>
             <ProductSlider :products="products" />
             <Newsletter />
         </v-container>
@@ -25,6 +25,11 @@ export default {
     },
     methods: {
 
+    },
+    mounted() {
+        if (!localStorage.getItem("scheme")) {
+            localStorage.setItem("scheme", "dark")
+        }
     },
 }
 </script>

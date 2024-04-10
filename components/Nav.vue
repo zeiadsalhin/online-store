@@ -31,7 +31,9 @@
 export default {
     methods: {
         toggleTheme() {
-            theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
+            // theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
+            localStorage.scheme === 'light' ? localStorage.scheme = 'dark' : localStorage.scheme = 'light';
+            this.$router.go()
         },
     },
 };
