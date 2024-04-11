@@ -20,25 +20,25 @@
                 </div>
             </li>
             <div class="h-1 rounded-md w-full bg-slate-950"></div>
-            <div v-if="cartItems.length != 0" class="total px-4 text-xl">Total Price: ${{ totalPrice }}</div>
+            <div v-if="cartItems.length != 0" class="total px-4 text-xl">Total Price: ${{
+                totalPrice.toLocaleString('en-US') }}</div>
         </ul>
-        <div v-if="cartItems.length != 0" class="md:flex mx-auto text-xl text-center w-full md:space-x-5 "><button
-                @click="clearCart" class="w-full bg-red-700 my-2 p-2.5 rounded-md">Clear
-                Cart</button>
-            <button class="w-full bg-gray-600 my-2 p-2.5 text-lg rounded-md">
-                <nuxtLink to="Checkout">Checkout
-                    (${{
-                        totalPrice
-                    }})</nuxtLink>
-            </button>
+        <div v-if="cartItems.length != 0" class="md:1flex mx-auto text-xl text-center md:1space-x-5 "><v-btn
+                variant="tonal" color="red-lighten-1" @click="clearCart"
+                class="w-11/12 text-white my-2 p-2.5 rounded-md">Clear
+                Cart</v-btn>
+            <v-btn to="Checkout" color="grey-darken-3
+" class="w-11/12 bg-gray-600 my-2 p-2.5 text-lg rounded-md">
+                Checkout(${{ totalPrice.toLocaleString('en-US') }})
+            </v-btn>
         </div>
         <div v-else class="empty text-center">
             <h1 class="mb-5">Cart is Empty</h1>
-            <nuxtLink to="/" class=" bg-slate-800 px-5 text-xl rounded-md">Home
-            </nuxtLink>
+            <v-btn to="/" class=" bg-slate-800 px-5 text-xl rounded-md">Home
+            </v-btn>
         </div>
 
-        <div class="payments space-y-5">
+        <div v-if="cartItems.length != 0" class="payments space-y-5">
             <p>We accept:</p>
             <v-img src="/payments.webp"></v-img>
         </div>
