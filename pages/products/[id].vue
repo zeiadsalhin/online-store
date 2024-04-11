@@ -13,6 +13,15 @@
 //         console.error('Error fetching product:', error);
 //     }
 // });
+import Swal from 'sweetalert2'
+import { useMainStore } from '@/store';
+
+const mainStore = useMainStore();
+
+const addToCart = (product) => {
+    mainStore.addToCart(product);
+
+};
 </script>
 <template>
     <div>
@@ -39,8 +48,8 @@
                     <p class="text-h5 mb-7">
                         Price: {{ product.price + ' $' }}
                     </p>
-                    <v-btn @click="$store.commit('cart/AddToCart', product)" min-height="45" min-width="170"
-                        class="text-capitalize" color="primary">Add To Cart</v-btn>
+                    <v-btn @click="addToCart(product)" min-height="45" min-width="170" class="text-capitalize"
+                        color="primary">Add To Cart</v-btn>
                 </v-col>
             </v-row>
         </v-container>
