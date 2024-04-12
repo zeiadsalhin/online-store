@@ -22,6 +22,8 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxt/content',
     '@pinia/nuxt',
+    // '@nuxtjs/supabase',
+    'nuxt-paypal',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error
@@ -37,6 +39,19 @@ export default defineNuxtConfig({
       },
     },
   },
+  paypal: {
+    clientId: import.meta.env.PAYPAL,
+  },
+  // supabase: {
+  //   // Options
+  //   redirectOptions: {
+  //     login: '/login',
+  //     callback: '/confirm',
+  //     include: ['/cart'],
+  //     exclude: [],
+  //     cookieRedirect: false,
+  //   }
+  // }
   // font
   // googleFonts: {
   //   families: {

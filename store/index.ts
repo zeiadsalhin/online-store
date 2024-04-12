@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 export const useMainStore = defineStore('main', {
   state: () => ({
     items: [],
+    discountedPrice: null,
   }),
   actions: {
     increment() {
@@ -32,6 +33,9 @@ export const useMainStore = defineStore('main', {
     },
     clearCart() {
       this.items = [];
+    },
+    setDiscountedPrice(discountedPrice) {
+      this.discountedPrice = discountedPrice;
     },
   },
 });

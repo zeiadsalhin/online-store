@@ -17,6 +17,7 @@ const expdate = ref("06/15");
 const cvv = ref("123");
 const errorMessage = ref('')
 const isDisabled = ref(false);
+const notapplied = ref(true)
 const rules = [
     (value) => {
         if (value) return true;
@@ -55,13 +56,29 @@ const couponapply = () => {
     if (coupon.value == 'FREE') {
         console.log("coupon applied")
         const originalvalue = totalPrice.value;
-        FinalPrice.value = originalvalue * 0.000000001
-        FPMsg.value = 'Congratulations! you got 100% discount'
+        FinalPrice.value = (originalvalue * 0.001).toFixed(2)
+        FPMsg.value = 'Congratulations! you got 99% discount'
         isDisabled.value = true;
+        mainStore.setDiscountedPrice(FinalPrice);
+        notapplied.value = false
     } else {
         FPErMsg.value = 'Please try another coupon'
     }
 }
+
+// remove coupon
+const removecoupon = () => {
+    mainStore.setDiscountedPrice(0);
+    notapplied.value = true
+    isDisabled.value = false
+    coupon.value = ''
+    FPMsg.value = ''
+}
+
+// Clear coupon 
+onMounted(() => {
+    mainStore.setDiscountedPrice(0);
+})
 
 // process
 async function proccess() {
@@ -163,10 +180,15 @@ async function proccess() {
                     <p class="text-lg">Have coupon? :</p>
                     <v-text-field v-model="coupon" variant="outlined" density="compact"
                         :disabled="isDisabled"></v-text-field>
-                    <v-btn @click="couponapply" variant="tonal" class="">Apply</v-btn>
-                    <span class="p-2 opacity-50 ">Hint: use Code FREE to get 100%</span>
+                    <v-btn v-if="notapplied" @click="couponapply" variant="tonal" class="">Apply</v-btn>
+                    <v-btn v-else @click="removecoupon" variant="tonal" class="">Remove</v-btn>
+                    <span class="p-2 opacity-50 ">Hint: use Code FREE to get 99%</span>
                 </div>
-                <div class="buttons flex w-fit space-x-3 py-2">
+                <div class="pay mt-5 flex-col text-center">
+                    <Paypal />
+                    <p>Or</p>
+                </div>
+                <div class="buttons flex justify-center w-f space-x-3 py-2">
                     <v-btn nuxt to="/cart" min-width="100" min-height="45" depressed>Back</v-btn>
                     <v-btn @click="proccess" type="submit" min-width="50" min-height="45" color="primary">Complete &
                         Pay
