@@ -76,9 +76,10 @@ const removecoupon = () => {
 }
 
 // Clear coupon 
-onMounted(() => {
-    mainStore.setDiscountedPrice(0);
-})
+onBeforeMount(() => {
+    removecoupon();
+    // console.log("Coupon removed");
+});
 
 // process
 async function proccess() {

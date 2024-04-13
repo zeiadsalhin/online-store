@@ -22,12 +22,17 @@ const totalPrice = computed(() => {
 const loaded = ref(false);
 const paidFor = ref(false);
 const perror = ref(null)
+
+// Update product price based on discount value
+watch(discount, (newValue, oldValue) => {
+
+    product.price = newValue < totalPrice.value && newValue > 0 ? newValue : totalPrice.value;
+});
 const product = {
-    price: discount > 0 && discount < totalPrice.value
-        ? discount
-        : totalPrice.value,
+    price: totalPrice.value,
     description: "Thank you for buying",
 };
+
 
 const setLoaded = () => {
     loaded.value = true;
