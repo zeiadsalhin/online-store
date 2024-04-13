@@ -8,6 +8,7 @@
 <script setup>
 // load payment info 
 import { useMainStore } from '~/store';
+const router = useRouter()
 const mainStore = useMainStore();
 const cartItems = computed(() => mainStore.items);
 const discount = computed(() => mainStore.discountedPrice);
@@ -47,7 +48,9 @@ const setLoaded = () => {
         onApprove: async (data, actions) => {
             const order = await actions.order.capture();
             paidFor.value = true;
-            console.log(order);
+            mainStore.pushOrder(order)
+            router.push('/orders/')
+            mainStore.clearCart();
         },
         onError: err => {
             console.log(err);

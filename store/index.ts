@@ -4,6 +4,7 @@ export const useMainStore = defineStore('main', {
   state: () => ({
     items: [],
     discountedPrice: null,
+    orders: [],
   }),
   actions: {
     increment() {
@@ -37,5 +38,8 @@ export const useMainStore = defineStore('main', {
     setDiscountedPrice(discountedPrice) {
       this.discountedPrice = discountedPrice;
     },
+    pushOrder(orderData) {
+      this.orders = orderData
+    }
   },
 });
